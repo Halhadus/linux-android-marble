@@ -18,7 +18,7 @@ jobs:
   build:
     name: Build packages
     runs-on: ubuntu-latest
-    container: quay.io/droidian/build-essential:bookworm-amd64
+    container: quay.io/droidian/build-essential:trixie-amd64
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
