@@ -32,9 +32,17 @@ jobs:
           apt update
           apt install linux-packaging-snippets
 
+      - name: Install package build dependencies
+        run: |
+          package_info=$(head -n 1 debian/changelog)
+          package_name=$(echo "${package_info}" | awk '{ print $1 }')
+          mk-build-deps --remove --install --tool "apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes" debian/control
+          rm -f ${package_name}-build-deps_*.*
+          
       - name: Build package
         run: |
-          RELENG_HOST_ARCH="arm64" releng-build-package
+          ARGS="--no-lintian -d -sa --no-sign --jobs=$(nproc) --build=any -aarm64"
+          eval debuild "${ARGS}"
           
       - name: Move packages to out directory
         run: |
