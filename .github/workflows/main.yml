@@ -30,6 +30,7 @@ jobs:
       - name: Update repositories
         run: |
           apt update
+          apt install linux-packaging-snippets
 
       - name: Build package
         run: |
