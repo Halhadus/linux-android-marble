@@ -48,13 +48,15 @@ jobs:
         run: |
           mkdir /out
           cp ../*.deb /out/
+          cp ../*.dsc /out/
+          cp ../*.tar.xz /out/
           ls /out
           
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: linux-image
-          path: /out/*.deb
+          path: /out/*.*
           if-no-files-found: error
           retention-days: 1
 
@@ -93,7 +95,7 @@ jobs:
       - name: Create latest release
         uses: softprops/action-gh-release@v1
         with:
-          files: out/linux-image/*.deb
+          files: out/linux-image/*.*
           tag_name: latest
           draft: false
           prerelease: false
