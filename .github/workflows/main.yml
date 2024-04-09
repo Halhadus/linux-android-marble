@@ -41,7 +41,7 @@ jobs:
           
       - name: Build package
         run: |
-          ARGS="--no-lintian -d -sa --no-sign --jobs=$(nproc) --build=any -aarm64"
+          ARGS="--no-lintian -F -d -sa --no-sign --jobs=$(nproc) --build=any -aarm64"
           eval debuild "${ARGS}"
           
       - name: Move packages to out directory
