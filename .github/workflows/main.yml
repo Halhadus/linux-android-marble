@@ -47,9 +47,7 @@ jobs:
       - name: Move packages to out directory
         run: |
           mkdir /out
-          cp ../*.deb /out/
-          cp ../*.dsc /out/
-          cp ../*.tar.xz /out/
+          cp ./out/KERNEL_OBJ/boot*.img /out/
           ls /out
           
       - name: Upload artifacts
