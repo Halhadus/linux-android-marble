@@ -11,20 +11,20 @@ VARIANT = android
 KERNEL_BASE_VERSION = 5.10.198
 
 # The kernel cmdline to use
-KERNEL_BOOTIMAGE_CMDLINE = 
+KERNEL_BOOTIMAGE_CMDLINE = console=tty0
 
 # Slug for the device vendor. This is going to be used in the KERNELRELASE
 # and package names.
-DEVICE_VENDOR = gki
+DEVICE_VENDOR = xiaomi
 
 # Slug for the device model. Like above.
-DEVICE_MODEL = generic
+DEVICE_MODEL = marble
 
 # Slug for the device platform. If unsure, keep this commented.
 # DEVICE_PLATFORM = platform
 
 # Marketing-friendly full-name. This will be used inside package descriptions
-DEVICE_FULL_NAME = GKI Generic Kernel
+DEVICE_FULL_NAME = POCO F5
 
 # Whether to use configuration fragments to augment the kernel configuration.
 # If unsure, keep this to 0.
