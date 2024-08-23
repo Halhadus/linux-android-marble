@@ -655,6 +655,54 @@ mount_vendor_partitions() {
 	        fi
 	    fi
 	done
+
+	odm_images="/dev/mapper/dynpart-odm /dev/mapper/dynpart-odm${1} /dev/mapper/dynpart-odm_a /dev/mapper/dynpart-odm_b"
+	for image in $odm_images; do
+	    if [ -e $image ]; then
+	        tell_kmsg "mounting odm from $image"
+	        mount $image /odm -o ro
+
+	        if [ -e "/odm/etc/build.prop" ]; then
+	            tell_kmsg "found valid odm partition: $image"
+	            break
+	        else
+	            tell_kmsg "$image is not a valid odm partition"
+	            umount /odm
+	        fi
+	    fi
+	done
+
+	product_images="/dev/mapper/dynpart-product /dev/mapper/dynpart-product${1} /dev/mapper/dynpart-product_a /dev/mapper/dynpart-product_b"
+	for image in $product_images; do
+	    if [ -e $image ]; then
+	        tell_kmsg "mounting product from $image"
+	        mount $image /product -o ro
+
+	        if [ -e "/product/etc/build.prop" ]; then
+	            tell_kmsg "found valid product partition: $image"
+	            break
+	        else
+	            tell_kmsg "$image is not a valid product partition"
+	            umount /product
+	        fi
+	    fi
+	done
+
+	mi_ext_images="/dev/mapper/dynpart-mi_ext /dev/mapper/dynpart-mi_ext${1} /dev/mapper/dynpart-mi_ext_a /dev/mapper/dynpart-mi_ext_b"
+	for image in $mi_ext_images; do
+	    if [ -e $image ]; then
+	        tell_kmsg "mounting mi_ext from $image"
+	        mount $image /mi_ext -o ro
+
+	        if [ -e "/mi_ext/etc/build.prop" ]; then
+	            tell_kmsg "found valid mi_ext partition: $image"
+	            break
+	        else
+	            tell_kmsg "$image is not a valid mi_ext partition"
+	            umount /mi_ext
+	        fi
+	    fi
+	done
 }
 
 mountroot() {
